@@ -169,7 +169,7 @@ const Index = ({ darkMode, toggleDarkMode }: IndexProps) => {
                       type={showPassword ? 'text' : 'password'}
                       value={password}
                       onChange={e => setPassword(e.target.value)}
-                      placeholder="••••••••"
+                      placeholder="Min 8 chars, A-z, 0-9, !@#"
                     />
                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
