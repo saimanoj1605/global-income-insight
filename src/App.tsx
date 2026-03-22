@@ -36,7 +36,7 @@ const App = () => {
           <BrowserRouter>
             <Navbar darkMode={darkMode} toggleDarkMode={() => setDarkMode(!darkMode)} />
             <Routes>
-              <Route path="/" element={<Index />} />
+              <Route path="/" element={<Index darkMode={darkMode} toggleDarkMode={() => setDarkMode(!darkMode)} />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
               <Route path="/about" element={<ProtectedRoute><About /></ProtectedRoute>} />
