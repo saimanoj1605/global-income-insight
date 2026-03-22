@@ -46,7 +46,11 @@ const Index = ({ darkMode, toggleDarkMode }: IndexProps) => {
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!firstName || !lastName || !email || !password) { toast.error('Please fill all fields'); return; }
-    if (password.length < 6) { toast.error('Password must be at least 6 characters'); return; }
+    if (password.length < 8) { toast.error('Password must be at least 8 characters'); return; }
+    if (!/[A-Z]/.test(password)) { toast.error('Password must contain at least one uppercase letter'); return; }
+    if (!/[a-z]/.test(password)) { toast.error('Password must contain at least one lowercase letter'); return; }
+    if (!/[0-9]/.test(password)) { toast.error('Password must contain at least one number'); return; }
+    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) { toast.error('Password must contain at least one special character'); return; }
     setLoading(true);
     const { error } = await signUp(email, password, firstName, lastName);
     setLoading(false);
@@ -165,7 +169,7 @@ const Index = ({ darkMode, toggleDarkMode }: IndexProps) => {
                       type={showPassword ? 'text' : 'password'}
                       value={password}
                       onChange={e => setPassword(e.target.value)}
-                      placeholder="••••••••"
+                      placeholder="Min 8 chars, A-z, 0-9, !@#"
                     />
                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
