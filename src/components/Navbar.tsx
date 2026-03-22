@@ -31,7 +31,7 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/home" className="text-primary-foreground font-display text-xl font-bold tracking-tight">
-            Global Income Analytics
+            Global Income Inequality Distribution
           </Link>
 
           {/* Desktop nav */}
