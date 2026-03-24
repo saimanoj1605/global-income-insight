@@ -26,6 +26,12 @@ interface ProfileUser {
   last_name: string;
 }
 
+const maskEmail = (email: string) => {
+  const [local, domain] = email.split('@');
+  if (!domain) return '***';
+  return `${local[0]}${'*'.repeat(Math.max(local.length - 2, 1))}${local.length > 1 ? local[local.length - 1] : ''}@${domain}`;
+};
+
 const LogoutPage = () => {
   const { signOut, user } = useAuth();
   const navigate = useNavigate();
