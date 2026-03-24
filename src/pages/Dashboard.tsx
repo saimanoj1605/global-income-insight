@@ -23,22 +23,14 @@ const Dashboard = () => {
 
       <section className="max-w-6xl mx-auto px-4 py-16">
         <SectionCard>
-          <div className="text-center py-16 space-y-6">
-            <Monitor className="w-20 h-20 text-primary mx-auto opacity-50" />
-            <h3 className="font-display text-2xl font-bold text-foreground">
-              Power BI Dashboard Embed Area
-            </h3>
-            <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              The Power BI dashboard for the Interactive Analytics Dashboard for Global Income Distribution 
-              is embedded here. The dashboard provides comprehensive visualizations of GDP trends, 
-              inequality metrics, and income distribution patterns across 55 countries from 2000 to 2024.
-            </p>
-            <div className="bg-muted rounded-lg p-8 border-2 border-dashed border-border">
-              <p className="text-muted-foreground text-sm">
-                To embed your Power BI dashboard, replace this placeholder with your Power BI embed URL using an iframe. 
-                The dashboard file (.pbix) is available in the Datasets section for download.
-              </p>
-            </div>
+          <div className="w-full aspect-video">
+            <iframe
+              title="Interactive_Analytics_Dashboard_For_Global_Income_Distribution"
+              className="w-full h-full rounded-lg border border-border"
+              src="https://app.powerbi.com/view?r=eyJrIjoiOTA4NDQ3NTItNTAxMC00MzgwLWI4YTMtNjlmZWRiZTVjYWFhIiwidCI6IjhmYWQ5NzYxLWZhZGItNDFiNi04YTFkLWRjMDVkNWRjNGY5YiJ9"
+              frameBorder="0"
+              allowFullScreen
+            />
           </div>
         </SectionCard>
       </section>
