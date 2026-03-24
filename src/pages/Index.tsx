@@ -141,29 +141,29 @@ const Index = ({ darkMode, toggleDarkMode }: IndexProps) => {
               {/* Tabs */}
               <div className="flex mb-6 rounded-lg bg-muted p-1">
                 <button
-                  onClick={() => setIsLogin(true)}
+                  onClick={() => switchMode(true)}
                   className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${isLogin ? 'bg-card shadow-card text-foreground' : 'text-muted-foreground'}`}
                 >
                   Login
                 </button>
                 <button
-                  onClick={() => setIsLogin(false)}
+                  onClick={() => switchMode(false)}
                   className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${!isLogin ? 'bg-card shadow-card text-foreground' : 'text-muted-foreground'}`}
                 >
                   Sign Up
                 </button>
               </div>
 
-              <form onSubmit={isLogin ? handleLogin : handleSignUp} className="space-y-4">
+              <form onSubmit={isLogin ? handleLogin : handleSignUp} className="space-y-4" autoComplete="off">
                 {!isLogin && (
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Shivani" />
+                      <Input id="firstName" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Shivani" autoComplete="off" />
                     </div>
                     <div>
                       <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Bhatt" />
+                      <Input id="lastName" value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Bhatt" autoComplete="off" />
                     </div>
                   </div>
                 )}
