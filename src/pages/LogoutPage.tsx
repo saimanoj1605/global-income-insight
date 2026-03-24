@@ -169,7 +169,7 @@ const LogoutPage = () => {
         <SectionCard>
           <div className="text-center space-y-4">
             <p className="text-muted-foreground">
-              Logged in as <span className="font-medium text-foreground">{user?.email}</span>
+              You are currently logged in
             </p>
             {isAdmin && (
               <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
