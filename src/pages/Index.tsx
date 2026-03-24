@@ -169,7 +169,7 @@ const Index = ({ darkMode, toggleDarkMode }: IndexProps) => {
                 )}
                 <div>
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@email.com" />
+                  <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@email.com" autoComplete="new-password" />
                 </div>
                 <div className="relative">
                   <Label htmlFor="password">Password</Label>
@@ -180,6 +180,7 @@ const Index = ({ darkMode, toggleDarkMode }: IndexProps) => {
                       value={password}
                       onChange={e => setPassword(e.target.value)}
                       placeholder="Min 8 chars, A-z, 0-9, !@#"
+                      autoComplete="new-password"
                     />
                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
