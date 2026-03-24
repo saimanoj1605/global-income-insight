@@ -98,7 +98,7 @@ const LogoutPage = () => {
       if (error.code === '23505') toast.error('User is already blocked');
       else toast.error(error.message);
     } else {
-      toast.success(`${blockEmail} has been blocked`);
+      toast.success('User has been blocked');
       setBlockEmail('');
       setBlockReason('');
       fetchBlockedUsers();
