@@ -220,7 +220,7 @@ const LogoutPage = () => {
                   <div key={u.user_id} className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
                     <div>
                       <p className="text-sm font-medium text-foreground">{u.first_name} {u.last_name}</p>
-                      <p className="text-xs text-muted-foreground">{u.email}</p>
+                      <p className="text-xs text-muted-foreground">{maskEmail(u.email)}</p>
                     </div>
                     {isUserBlocked(u.user_id) ? (
                       <span className="text-xs text-destructive flex items-center gap-1">
