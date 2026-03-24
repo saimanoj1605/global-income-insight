@@ -253,7 +253,7 @@ const LogoutPage = () => {
                   {blockedUsers.map(b => (
                     <div key={b.id} className="flex items-center justify-between p-3 rounded-lg bg-destructive/5 border border-destructive/10">
                       <div>
-                        <p className="text-sm font-medium text-foreground">{b.email}</p>
+                        <p className="text-sm font-medium text-foreground">{maskEmail(b.email)}</p>
                         <p className="text-xs text-muted-foreground">Blocked: {new Date(b.blocked_at).toLocaleDateString()} — {b.reason}</p>
                       </div>
                       <Button size="sm" variant="ghost" onClick={() => handleUnblock(b)} className="text-green-600 hover:bg-green-50">
