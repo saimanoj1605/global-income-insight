@@ -29,6 +29,16 @@ const Index = ({ darkMode, toggleDarkMode }: IndexProps) => {
   const [lastName, setLastName] = useState('');
   const [resetEmail, setResetEmail] = useState('');
 
+  // Clear form fields when switching between login and signup
+  const switchMode = (login: boolean) => {
+    setIsLogin(login);
+    setEmail('');
+    setPassword('');
+    setFirstName('');
+    setLastName('');
+    setShowPassword(false);
+  };
+
   if (user) {
     navigate('/home');
     return null;
