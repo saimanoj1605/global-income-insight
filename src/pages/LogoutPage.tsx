@@ -26,6 +26,12 @@ interface ProfileUser {
   last_name: string;
 }
 
+const maskEmail = (email: string) => {
+  const [local, domain] = email.split('@');
+  if (!domain) return '***';
+  return `${local[0]}${'*'.repeat(Math.max(local.length - 2, 1))}${local.length > 1 ? local[local.length - 1] : ''}@${domain}`;
+};
+
 const LogoutPage = () => {
   const { signOut, user } = useAuth();
   const navigate = useNavigate();
@@ -92,7 +98,7 @@ const LogoutPage = () => {
       if (error.code === '23505') toast.error('User is already blocked');
       else toast.error(error.message);
     } else {
-      toast.success(`${blockEmail} has been blocked`);
+      toast.success('User has been blocked');
       setBlockEmail('');
       setBlockReason('');
       fetchBlockedUsers();
@@ -112,13 +118,13 @@ const LogoutPage = () => {
     });
 
     if (error) toast.error(error.message);
-    else { toast.success(`${profile.email} has been blocked`); fetchBlockedUsers(); }
+    else { toast.success('User has been blocked'); fetchBlockedUsers(); }
   };
 
   const handleUnblock = async (blocked: BlockedUser) => {
     const { error } = await supabase.from('blocked_users').delete().eq('id', blocked.id);
     if (error) toast.error(error.message);
-    else { toast.success(`${blocked.email} has been unblocked`); fetchBlockedUsers(); }
+    else { toast.success('User has been unblocked'); fetchBlockedUsers(); }
   };
 
   const handleLogout = async () => {
@@ -214,7 +220,7 @@ const LogoutPage = () => {
                   <div key={u.user_id} className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
                     <div>
                       <p className="text-sm font-medium text-foreground">{u.first_name} {u.last_name}</p>
-                      <p className="text-xs text-muted-foreground">{u.email}</p>
+                      <p className="text-xs text-muted-foreground">{maskEmail(u.email)}</p>
                     </div>
                     {isUserBlocked(u.user_id) ? (
                       <span className="text-xs text-destructive flex items-center gap-1">
@@ -247,7 +253,7 @@ const LogoutPage = () => {
                   {blockedUsers.map(b => (
                     <div key={b.id} className="flex items-center justify-between p-3 rounded-lg bg-destructive/5 border border-destructive/10">
                       <div>
-                        <p className="text-sm font-medium text-foreground">{b.email}</p>
+                        <p className="text-sm font-medium text-foreground">{maskEmail(b.email)}</p>
                         <p className="text-xs text-muted-foreground">Blocked: {new Date(b.blocked_at).toLocaleDateString()} — {b.reason}</p>
                       </div>
                       <Button size="sm" variant="ghost" onClick={() => handleUnblock(b)} className="text-green-600 hover:bg-green-50">
