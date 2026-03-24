@@ -118,7 +118,7 @@ const LogoutPage = () => {
     });
 
     if (error) toast.error(error.message);
-    else { toast.success(`${profile.email} has been blocked`); fetchBlockedUsers(); }
+    else { toast.success('User has been blocked'); fetchBlockedUsers(); }
   };
 
   const handleUnblock = async (blocked: BlockedUser) => {
