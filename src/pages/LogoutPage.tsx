@@ -124,7 +124,7 @@ const LogoutPage = () => {
   const handleUnblock = async (blocked: BlockedUser) => {
     const { error } = await supabase.from('blocked_users').delete().eq('id', blocked.id);
     if (error) toast.error(error.message);
-    else { toast.success(`${blocked.email} has been unblocked`); fetchBlockedUsers(); }
+    else { toast.success('User has been unblocked'); fetchBlockedUsers(); }
   };
 
   const handleLogout = async () => {
