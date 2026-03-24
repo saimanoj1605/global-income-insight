@@ -29,6 +29,16 @@ const Index = ({ darkMode, toggleDarkMode }: IndexProps) => {
   const [lastName, setLastName] = useState('');
   const [resetEmail, setResetEmail] = useState('');
 
+  // Clear form fields when switching between login and signup
+  const switchMode = (login: boolean) => {
+    setIsLogin(login);
+    setEmail('');
+    setPassword('');
+    setFirstName('');
+    setLastName('');
+    setShowPassword(false);
+  };
+
   if (user) {
     navigate('/home');
     return null;
@@ -131,35 +141,35 @@ const Index = ({ darkMode, toggleDarkMode }: IndexProps) => {
               {/* Tabs */}
               <div className="flex mb-6 rounded-lg bg-muted p-1">
                 <button
-                  onClick={() => setIsLogin(true)}
+                  onClick={() => switchMode(true)}
                   className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${isLogin ? 'bg-card shadow-card text-foreground' : 'text-muted-foreground'}`}
                 >
                   Login
                 </button>
                 <button
-                  onClick={() => setIsLogin(false)}
+                  onClick={() => switchMode(false)}
                   className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${!isLogin ? 'bg-card shadow-card text-foreground' : 'text-muted-foreground'}`}
                 >
                   Sign Up
                 </button>
               </div>
 
-              <form onSubmit={isLogin ? handleLogin : handleSignUp} className="space-y-4">
+              <form onSubmit={isLogin ? handleLogin : handleSignUp} className="space-y-4" autoComplete="off">
                 {!isLogin && (
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Shivani" />
+                      <Input id="firstName" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Shivani" autoComplete="off" />
                     </div>
                     <div>
                       <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Bhatt" />
+                      <Input id="lastName" value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Bhatt" autoComplete="off" />
                     </div>
                   </div>
                 )}
                 <div>
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@email.com" />
+                  <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@email.com" autoComplete="new-password" />
                 </div>
                 <div className="relative">
                   <Label htmlFor="password">Password</Label>
@@ -170,6 +180,7 @@ const Index = ({ darkMode, toggleDarkMode }: IndexProps) => {
                       value={password}
                       onChange={e => setPassword(e.target.value)}
                       placeholder="Min 8 chars, A-z, 0-9, !@#"
+                      autoComplete="new-password"
                     />
                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
