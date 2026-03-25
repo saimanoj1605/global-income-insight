@@ -18,6 +18,7 @@ import Feedback from "./pages/Feedback";
 import LogoutPage from "./pages/LogoutPage";
 import AdminPage from "./pages/AdminPage";
 import ResetPassword from "./pages/ResetPassword";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -46,6 +47,7 @@ const App = () => {
               <Route path="/overview" element={<ProtectedRoute><Overview /></ProtectedRoute>} />
               <Route path="/datasets" element={<ProtectedRoute><Datasets /></ProtectedRoute>} />
               <Route path="/feedback" element={<ProtectedRoute><Feedback /></ProtectedRoute>} />
+              <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
               <Route path="/logout" element={<ProtectedRoute><LogoutPage /></ProtectedRoute>} />
               <Route path="/admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
               <Route path="*" element={<NotFound />} />

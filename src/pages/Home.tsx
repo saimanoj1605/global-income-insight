@@ -1,9 +1,52 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PageWrapper from '@/components/PageWrapper';
 import SectionCard from '@/components/SectionCard';
-import { BarChart3, Globe2, TrendingUp, Target } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { BarChart3, Globe2, TrendingUp, Target, Heart } from 'lucide-react';
+import { toast } from 'sonner';
 
 const Home = () => {
+  const [totalLikes, setTotalLikes] = useState(0);
+  const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    fetchLikes();
+  }, []);
+
+  const fetchLikes = async () => {
+    try {
+      const res = await fetch('http://localhost:5000/viewer/likes');
+      const data = await res.json();
+      setTotalLikes(data.totalLikes);
+    } catch (err) {
+      console.error('Error fetching likes:', err);
+    }
+  };
+
+  const handleLike = async () => {
+    try {
+      const res = await fetch('http://localhost:5000/viewer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Anonymous',
+          city: 'Unknown',
+          state: 'Unknown',
+          country: 'Unknown',
+          feedback: 'Liked the dashboard',
+          liked: true,
+        }),
+      });
+      if (res.ok) {
+        setLiked(true);
+        setTotalLikes(prev => prev + 1);
+        toast.success('Thanks for liking!');
+      }
+    } catch (err) {
+      toast.error('Error liking');
+    }
+  };
   return (
     <PageWrapper>
       {/* Hero */}
@@ -79,6 +122,21 @@ const Home = () => {
             </motion.div>
           ))}
         </div>
+
+        <SectionCard title="Support This Project" delay={0.3}>
+          <div className="text-center space-y-4">
+            <p className="text-muted-foreground">If you found this dashboard helpful, show your support!</p>
+            <div className="flex items-center justify-center gap-4">
+              <Button onClick={handleLike} disabled={liked} variant="outline" className="gap-2">
+                <Heart className={`w-4 h-4 ${liked ? 'fill-red-500 text-red-500' : ''}`} />
+                {liked ? 'Liked' : 'Like'}
+              </Button>
+              <div className="text-sm text-muted-foreground">
+                Total Likes: {totalLikes}
+              </div>
+            </div>
+          </div>
+        </SectionCard>
       </section>
     </PageWrapper>
   );
