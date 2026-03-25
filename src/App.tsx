@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from '@/contexts/AuthContext';
 import Navbar from '@/components/Navbar';
 import ProtectedRoute from '@/components/ProtectedRoute';
+import AnimeAvatar from '@/components/AnimeAvatar';
 import Index from "./pages/Index";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -15,6 +16,7 @@ import Overview from "./pages/Overview";
 import Datasets from "./pages/Datasets";
 import Feedback from "./pages/Feedback";
 import LogoutPage from "./pages/LogoutPage";
+import AdminPage from "./pages/AdminPage";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
@@ -45,8 +47,10 @@ const App = () => {
               <Route path="/datasets" element={<ProtectedRoute><Datasets /></ProtectedRoute>} />
               <Route path="/feedback" element={<ProtectedRoute><Feedback /></ProtectedRoute>} />
               <Route path="/logout" element={<ProtectedRoute><LogoutPage /></ProtectedRoute>} />
+              <Route path="/admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <AnimeAvatar />
           </BrowserRouter>
         </TooltipProvider>
       </AuthProvider>
