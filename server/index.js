@@ -25,6 +25,11 @@ app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/viewer', viewerRoutes);
 
+// Viewer API Health Check
+app.get('/viewer-health', (req, res) => {
+  res.send('Viewer API is working ✅');
+});
+
 // Health check
 app.get('/', (req, res) => {
   res.send('Server is running');
