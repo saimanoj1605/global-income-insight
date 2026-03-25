@@ -68,6 +68,62 @@ export type Database = {
         }
         Relationships: []
       }
+      feedback_replies: {
+        Row: {
+          created_at: string
+          feedback_id: string
+          id: string
+          replied_by: string
+          reply: string
+        }
+        Insert: {
+          created_at?: string
+          feedback_id: string
+          id?: string
+          replied_by: string
+          reply: string
+        }
+        Update: {
+          created_at?: string
+          feedback_id?: string
+          id?: string
+          replied_by?: string
+          reply?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "feedback_replies_feedback_id_fkey"
+            columns: ["feedback_id"]
+            isOneToOne: false
+            referencedRelation: "feedback"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      poll_responses: {
+        Row: {
+          answer: string
+          created_at: string
+          id: string
+          question_key: string
+          user_id: string
+        }
+        Insert: {
+          answer: string
+          created_at?: string
+          id?: string
+          question_key: string
+          user_id: string
+        }
+        Update: {
+          answer?: string
+          created_at?: string
+          id?: string
+          question_key?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -91,6 +147,27 @@ export type Database = {
           first_name?: string
           id?: string
           last_name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      suggestions: {
+        Row: {
+          created_at: string
+          id: string
+          suggestion: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          suggestion: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          suggestion?: string
           user_id?: string
         }
         Relationships: []
